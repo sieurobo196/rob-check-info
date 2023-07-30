@@ -175,18 +175,27 @@ public class CheckService {
     }
 
     private void handleAlertToChanelSlack(String msg) {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Content-type", "application/json");
-        PostMessageDto postMessageDto = PostMessageDto.builder()
-                .channel(channel)
-                .username(username)
-                .text(msg)
-                .build();
-        String json = StringJsonUtil.toStringJson(postMessageDto);
-        ResponseEntity<String> response = HttpUtil.postRequestBody(urlChanelMonitor, json, String.class, httpHeaders);
-        if (response.getStatusCodeValue() != 200) {
-            System.out.println("Can not send message to Slack channel. Error: " + response.getBody());
+        try {
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.add("Content-type", "application/json");
+            PostMessageDto postMessageDto = PostMessageDto.builder()
+                    .channel(channel)
+                    .username(username)
+                    .text(msg)
+                    .build();
+            String json = StringJsonUtil.toStringJson(postMessageDto);
+            Unirest.setTimeouts(0, 0);
+            HttpResponse<String> response = Unirest.post("https://hooks.slack.com/services/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")
+                    .header("Content-Type", "application/json")
+                    .body(json)
+                    .asString();
+            if (response.getStatus() != 200) {
+                System.out.println("Can not send message to Slack channel. Error: " + response.getBody());
+            }
+        } catch (Exception exception) {
+            System.out.println("Can not send message to Slack channel. Error: " + exception.getMessage());
         }
+
     }
 
     private String getDate() {
