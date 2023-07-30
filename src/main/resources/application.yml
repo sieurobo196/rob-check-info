@@ -1,0 +1,20 @@
+server:
+  port: 8088
+  servlet:
+    context-path: "/"
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost:3306}/${MYSQL_DB:codewr_com}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${USER_CWR:root}
+    password: ${PASS_CWR:}
+slack:
+  webhook:
+    url-monitor: ${CHANNEL_MONITOR:https://hooks.slack.com/services/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}
+    channel: ${CHANEL_MONITOR:#bot-get-event}
+    username: ${CHANEL_USERNAME:bot-monitor}
+    phut: ${PHUT:80}
+    odd: ${ODD:2.25}
+    token: ${TOKEN_CHANEL:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsYW5ndWFnZUNvZGUiOiJ2aSIsImN1cnJlbmN5UmF0ZSI6MSwiY3VycmVuY3lSYXRlZXVyIjoxLCJjdXN0b21lckxpbWl0cyI6W10sImN1cnJlbmN5Q29kZSI6IlVTRCIsImN1cnJlbmN5Q29kZUFub24iOiIiLCJjdXN0b21lcklkIjotMSwiYmV0dGluZ1ZpZXciOiJFdXJvcGVhbiBWaWV3Iiwic29ydGluZ1R5cGVJZCI6MCwiYmV0dGluZ0xheW91dCI6MiwiZGlzcGxheVR5cGVJZCI6MSwidGltZXpvbmVJZCI6MjAsImF1dG9UaW1lWm9uZSI6MCwiZXVPZGRzSWQiOiI0IiwiYXNpYW5PZGRzSWQiOiI0Iiwia29yZWFuT2Rkc0lkIjoiMSIsImludFRhYkV4cGFuZGVkIjoxLCJkb21haW5JRCI6NDcyLCJhZ2VudElEIjoyMzkwMDM0OSwic2l0ZUlkIjoyMDA5MSwic2VsZWN0ZWRPcHRpb25JZCI6MCwiY3VzdG9tZXJMZXZlbCI6MCwiaWF0IjoxNjkwNzI1NzA4fQ.1n6_YEGJfYKPClm6FsEuyxmnLJ4mZ1QDPX3Xwce26-U}
+    cookie: ${COOKIE_CHANEL:session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjotMSwiZXhwaXJlZERhdGUiOjE2OTA4MTIxMjEwMDksImlhdCI6MTY5MDcyNTcwOH0.k60jNk1ovthBt3qKxdYxPCCOcFRUF8KPqIjC4ZOxEYE}
+
