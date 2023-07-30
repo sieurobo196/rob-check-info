@@ -10,11 +10,12 @@ spring:
     password: ${PASS_CWR:}
 slack:
   webhook:
-    url-monitor: https://hooks.slack.com/services/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
+    url-monitor: https://hooks.slack.com/services/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
     channel: ${CHANEL_MONITOR:#a-project}
     username: ${CHANEL_USERNAME:bot-check}
     phut: ${PHUT:80}
     odd: ${ODD:2.25}
     token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsYW5ndWFnZUNvZGUiOiJ2aSIsImN1cnJlbmN5UmF0ZSI6MSwiY3VycmVuY3lSYXRlZXVyIjoxLCJjdXN0b21lckxpbWl0cyI6W10sImN1cnJlbmN5Q29kZSI6IlVTRCIsImN1cnJlbmN5Q29kZUFub24iOiIiLCJjdXN0b21lcklkIjotMSwiYmV0dGluZ1ZpZXciOiJFdXJvcGVhbiBWaWV3Iiwic29ydGluZ1R5cGVJZCI6MCwiYmV0dGluZ0xheW91dCI6MiwiZGlzcGxheVR5cGVJZCI6MSwidGltZXpvbmVJZCI6MjAsImF1dG9UaW1lWm9uZSI6MCwiZXVPZGRzSWQiOiI0IiwiYXNpYW5PZGRzSWQiOiI0Iiwia29yZWFuT2Rkc0lkIjoiMSIsImludFRhYkV4cGFuZGVkIjoxLCJkb21haW5JRCI6NDcyLCJhZ2VudElEIjoyMzkwMDM0OSwic2l0ZUlkIjoyMDA5MSwic2VsZWN0ZWRPcHRpb25JZCI6MCwiY3VzdG9tZXJMZXZlbCI6MCwiaWF0IjoxNjkwNzI1NzA4fQ.1n6_YEGJfYKPClm6FsEuyxmnLJ4mZ1QDPX3Xwce26-U
     cookie: session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjotMSwiZXhwaXJlZERhdGUiOjE2OTA4MTI4NDM3NzgsImlhdCI6MTY5MDcyNTcwOH0.Y1ByB6cdJZCPyl7JecJRQ8UFBxY-POpYiOB40iqjGPY
+
 
