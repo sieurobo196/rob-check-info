@@ -46,13 +46,13 @@ public class CheckService {
     public void checkInfoService() throws UnirestException {
         logger.info("rob------------check here");
         String jsonData = getByUnirest();
-        if(Objects.nonNull(jsonData)) {
+        if (Objects.nonNull(jsonData)) {
             Gson gson = new Gson();
             MatchData matchData = gson.fromJson(jsonData, MatchData.class);
             matchData.getData().forEach(item -> {
                 handleEachMatch(item);
             });
-            handleAlertToChanelSlack("Check------------------------line");
+            handleAlertToChanelSlack("Check------------------------line-----------" + getDate());
         }
 
     }
@@ -65,6 +65,10 @@ public class CheckService {
                     .header("Authorization", token)
                     .header("Cookie", cookie)
                     .asString();
+            if (response.getStatus() != 200) {
+                handleAlertToChanelSlack("GET data error------------------------line");
+                return null;
+            }
             return response.getBody();
         } catch (Exception exception) {
             handleAlertToChanelSlack("GET data error------------------------line");
@@ -76,8 +80,10 @@ public class CheckService {
         String typeName = (String) match.get(4);
 
         if (typeName.equals("Bóng đá")) {
+
             String matchType = (String) match.get(2);
             String matchName = (String) match.get(10);
+
             if (!matchType.startsWith("E-Soccer")) {
 
                 // get Time Match
@@ -92,7 +98,7 @@ public class CheckService {
                         Integer timeMatch = value.intValue();
 
                         if (timeMatch > phut) {
-
+                            System.out.println("rob------------check data" + matchName);
                             // ti so
                             List<String> tiso = (List<String>) match.get(12);
                             String scoreMatch = tiso.get(0) + "-" + tiso.get(1);
@@ -130,7 +136,7 @@ public class CheckService {
                                                             "----Goal--------" + scoreMatch;
                                                 }
                                                 String msg = "";
-                                                if (oddTai > 0 && oddTai < odd) {
+                                                if (oddTai > 0.5 && oddTai < odd) {
                                                     System.out.println("oddTai: " + matchName + "--" + scoreMatchList.get(matchName));
 
                                                     msg = "--Time: " + getDate() + "\n" +
@@ -143,8 +149,6 @@ public class CheckService {
                                                 }
                                                 handleAlertToChanelSlack(msg);
                                                 scoreMatchList.put(matchName, scoreMatch);
-
-
                                             }
                                         }
                                     });
@@ -185,7 +189,7 @@ public class CheckService {
                     .build();
             String json = StringJsonUtil.toStringJson(postMessageDto);
             Unirest.setTimeouts(0, 0);
-            HttpResponse<String> response = Unirest.post("https://hooks.slack.com/services/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")
+            HttpResponse<String> response = Unirest.post(urlChanelMonitor)
                     .header("Content-Type", "application/json")
                     .body(json)
                     .asString();
